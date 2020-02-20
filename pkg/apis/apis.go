@@ -14,6 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+//go:generate $GOPATH/src/k8s.io/code-generator/generate-groups.sh all sigs.k8s.io/kubefed/pkg/client sigs.k8s.io/kubefed/pkg/apis "core:v1alpha1,v1beta1 multiclusterdns:v1alpha1 scheduling:v1alpha1" --go-header-file ../../hack/boilerplate.go.txt
+
 // Package apis contains Kubernetes API groups.
 package apis
 

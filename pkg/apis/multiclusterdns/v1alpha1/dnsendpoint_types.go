@@ -57,6 +57,7 @@ type DNSEndpointStatus struct {
 	ObservedGeneration int64 `json:"observedGeneration,omitempty"`
 }
 
+// +genclient
 // +kubebuilder:object:root=true
 // +kubebuilder:resource:path=dnsendpoints
 // +kubebuilder:subresource:status

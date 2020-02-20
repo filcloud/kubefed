@@ -27,6 +27,7 @@ type FederatedServiceClusterStatus struct {
 	Status      corev1.ServiceStatus `json:"status"`
 }
 
+// +genclient
 // +kubebuilder:object:root=true
 // +kubebuilder:resource:path=federatedservicestatuses
 

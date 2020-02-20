@@ -43,6 +43,7 @@ type ClusterIngressDNS struct {
 	LoadBalancer corev1.LoadBalancerStatus `json:"loadBalancer,omitempty"`
 }
 
+// +genclient
 // +kubebuilder:object:root=true
 // +kubebuilder:resource:path=ingressdnsrecords
 // +kubebuilder:subresource:status

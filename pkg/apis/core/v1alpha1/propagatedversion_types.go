@@ -43,6 +43,7 @@ type ClusterObjectVersion struct {
 	Version string `json:"version"`
 }
 
+// +genclient
 // +kubebuilder:object:root=true
 // +kubebuilder:resource:path=propagatedversions
 // +kubebuilder:subresource:status

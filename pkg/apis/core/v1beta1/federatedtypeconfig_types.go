@@ -106,6 +106,7 @@ type FederatedTypeConfigStatus struct {
 	StatusController *ControllerStatus `json:"statusController,omitempty"`
 }
 
+// +genclient
 // +kubebuilder:object:root=true
 // +kubebuilder:resource:path=federatedtypeconfigs,shortName=ftc
 // +kubebuilder:subresource:status

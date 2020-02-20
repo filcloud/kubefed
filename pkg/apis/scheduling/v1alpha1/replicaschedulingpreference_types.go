@@ -74,6 +74,7 @@ type ClusterPreferences struct {
 type ReplicaSchedulingPreferenceStatus struct {
 }
 
+// +genclient
 // +kubebuilder:object:root=true
 // +kubebuilder:resource:path=replicaschedulingpreferences
 

@@ -74,6 +74,7 @@ type KubeFedClusterStatus struct {
 	Region *string `json:"region,omitempty"`
 }
 
+// +genclient
 // +kubebuilder:object:root=true
 // +kubebuilder:printcolumn:name=age,type=date,JSONPath=.metadata.creationTimestamp
 // +kubebuilder:printcolumn:name=ready,type=string,JSONPath=.status.conditions[?(@.type=='Ready')].status

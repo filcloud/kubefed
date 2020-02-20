@@ -24,6 +24,7 @@ import (
 type ClusterPropagatedVersionSpec struct {
 }
 
+// +genclient
 // +kubebuilder:object:root=true
 // +kubebuilder:resource:path=clusterpropagatedversions,scope=Cluster
 // +kubebuilder:subresource:status

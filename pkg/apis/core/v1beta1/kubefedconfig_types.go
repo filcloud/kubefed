@@ -118,6 +118,7 @@ const (
 	AdoptResourcesDisabled ResourceAdoption = "Disabled"
 )
 
+// +genclient
 // +kubebuilder:object:root=true
 // +kubebuilder:resource:path=kubefedconfigs
 
