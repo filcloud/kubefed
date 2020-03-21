@@ -56,7 +56,9 @@ LDFLAG_OPTIONS = -ldflags "-X sigs.k8s.io/kubefed/pkg/version.version=$(GIT_VERS
                       -X sigs.k8s.io/kubefed/pkg/version.gitTreeState=$(GIT_TREESTATE) \
                       -X sigs.k8s.io/kubefed/pkg/version.buildDate=$(BUILDDATE)"
 
-GO_BUILDCMD = CGO_ENABLED=0 go build $(VERBOSE_FLAG) $(LDFLAG_OPTIONS)
+SET_CHINA_MIRROR_ENV = go env -w GOPROXY=https://goproxy.cn,direct && go env -w GOSUMDB="sum.golang.google.cn"  
+GO_BUILDCMD = $(SET_CHINA_MIRROR_ENV) && go mod download && CGO_ENABLED=0 go build $(VERBOSE_FLAG) $(LDFLAG_OPTIONS)
+GO_TEST = $(SET_CHINA_MIRROR_ENV) && go test -c $(LDFLAG_OPTIONS)
 
 TESTARGS ?= $(VERBOSE_FLAG) -timeout 60s
 TEST_PKGS ?= $(GOTARGET)/cmd/... $(GOTARGET)/pkg/...
@@ -103,7 +105,7 @@ $(foreach cmd, $(COMMANDS), $(foreach platform, $(PLATFORMS), $(eval $(call PLAT
 
 define E2E_PLATFORM_template
 $(1)-$(2): bindir
-	$(DOCKER_BUILD) 'GOARCH=$(word 2,$(subst -, ,$(2))) GOOS=$(word 1,$(subst -, ,$(2))) go test -c $(LDFLAG_OPTIONS) -o $(1)-$(2) ./test/$(3)'
+	$(DOCKER_BUILD) 'GOARCH=$(word 2,$(subst -, ,$(2))) GOOS=$(word 1,$(subst -, ,$(2))) $(GO_TEST) -o $(1)-$(2) ./test/$(3)'
 ALL_BINS := $(ALL_BINS) $(1)-$(2)
 endef
 $(foreach platform, $(PLATFORMS), $(eval $(call E2E_PLATFORM_template, $(E2E_BINARY_TARGET),$(platform),$(notdir $(E2E_BINARY_TARGET)))))
